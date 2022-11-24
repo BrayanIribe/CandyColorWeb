@@ -6,7 +6,7 @@
         placeholder="Buscar por Id o nombre"
         toNew="/supplier/new"
       />
-      <IDatagrid :fields="fields" />
+      <IDatagrid :fields="fields" /> 
     </IContainer>
   </div>
 </template>
