@@ -6,10 +6,11 @@
         placeholder="Buscar por Id o nombre"
         toNew="/inventory/new"
       />
-      <IDatagrid :fields="fields" >
-        <b-button variant="success" class="mb-3">Modificar Existencia</b-button>
-    </IDatagrid>
-
+      <IDatagrid :fields="fields">
+        <b-button variant="success" class="mb-3" disabled
+          >Modificar Existencia</b-button
+        >
+      </IDatagrid>
     </IContainer>
   </div>
 </template>
@@ -38,5 +39,4 @@ export default {
 </script>
 
 <style>
-
 </style>

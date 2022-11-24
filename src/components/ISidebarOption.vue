@@ -26,18 +26,24 @@ export default {
 </script>
 
 <style>
+.i-sidebar-option {
+  position: relative;
+  left: -20px;
+  transition: 200ms;
+  padding-left: 20px;
+}
 .i-sidebar-option a {
   text-decoration: none;
   font-size: 1.3rem;
   margin-bottom: 1rem;
+  width: 100%;
   display: block;
-  transition: 200ms;
   position: relative;
-  left: 0;
+  left: 20px;
 }
 
-.i-sidebar-option a:hover {
-  left: 20px;
+.i-sidebar-option:hover {
+  transform: translateX(20px);
 }
 
 .i-sidebar-option a:hover > .i-router-arrow {
