@@ -1,10 +1,10 @@
 <template>
   <div>
-    <IHomeHeader />
+    <IHomeHeader/>
     <IContainer>
-      <ISearchContainer
+        <ISearchContainer
         placeholder="Buscar por Id o nombre"
-        toNew="/customer/new"
+        toNew="/supplier/new"
       />
       <IDatagrid :fields="fields" />
     </IContainer>
@@ -12,14 +12,14 @@
 </template>
 
 <script>
-import IContainer from "@/components/IContainer";
-import IHomeHeader from "@/components/IHomeHeader";
-import ISearchContainer from "@/components/ISearchContainer";
-import IDatagrid from "@/components/IDatagrid.vue";
+import IHomeHeader from '@/components/IHomeHeader.vue';
+import IContainer from '@/components/IContainer.vue';
+import ISearchContainer from '@/components/ISearchContainer.vue';
+import IDatagrid from '@/components/IDatagrid.vue';
 
 export default {
-  components: { IHomeHeader, IContainer, ISearchContainer, IDatagrid },
-  data() {
+    components: { IHomeHeader, IContainer, ISearchContainer, IDatagrid },
+    data() {
     return {
       fields: [
         { key: "id", label: "Id" },
@@ -29,7 +29,7 @@ export default {
       ],
     };
   },
-};
+}
 </script>
 
 <style>

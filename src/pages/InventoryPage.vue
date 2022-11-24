@@ -4,9 +4,12 @@
     <IContainer>
       <ISearchContainer
         placeholder="Buscar por Id o nombre"
-        toNew="/customer/new"
+        toNew="/inventory/new"
       />
-      <IDatagrid :fields="fields" />
+      <IDatagrid :fields="fields" >
+        <b-button variant="success" class="mb-3">Modificar Existencia</b-button>
+    </IDatagrid>
+
     </IContainer>
   </div>
 </template>
@@ -23,9 +26,11 @@ export default {
     return {
       fields: [
         { key: "id", label: "Id" },
-        { key: "name", label: "Nombre" },
-        { key: "rfc", label: "RFC" },
-        { key: "phone", label: "Teléfono" },
+        { key: "description", label: "Descripción" },
+        { key: "code", label: "Código de barras" },
+        { key: "isMatter", label: "Es Materia" },
+        { key: "existence", label: "Existencia" },
+        { key: "cost", label: "Costo" },
       ],
     };
   },

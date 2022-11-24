@@ -64,6 +64,5 @@ export default {
 </script>
 
 <style>
-.i-m-container {
-}
+
 </style>

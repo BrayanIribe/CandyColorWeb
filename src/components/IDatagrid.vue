@@ -15,6 +15,7 @@
     </div>
     <div class="row mt-3">
       <div class="col-sm-6">
+        <slot></slot>
         <b-pagination />
         <span>Mostrando desde 0 hasta 0 registros.</span>
       </div>
