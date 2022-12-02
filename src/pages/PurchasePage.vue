@@ -3,10 +3,10 @@
       <IHomeHeader />
       <IContainer>
         <div>
-          <p class="text-right">Folio O-1</p>
+          <p class="text-right">Folio S-1</p>
           <div class="row"> 
             <div class="col-10">
-                <span>Cliente: {{ $customer }}</span>
+                <span>Proveedor: {{ $supplier }}</span>
             </div>
             <div class="col-2">
                 <b-btn class="i-new-btn" variant="info">Seleccionar</b-btn>
@@ -78,8 +78,8 @@
       $price() {
         return "0.00";
       },
-      $customer(){
-        return "1 - Público General";
+      $supplier() {
+        return "1 - Proveedor general";
       }
     }
   };

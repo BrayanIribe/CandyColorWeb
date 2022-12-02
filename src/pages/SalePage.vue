@@ -3,7 +3,7 @@
       <IHomeHeader />
       <IContainer>
         <div>
-          <p class="text-right">Folio O-1</p>
+          <p class="text-right">Folio S-1</p>
           <div class="row"> 
             <div class="col-10">
                 <span>Cliente: {{ $customer }}</span>

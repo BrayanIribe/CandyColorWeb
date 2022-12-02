@@ -20,7 +20,7 @@
         <span>Mostrando desde 0 hasta 0 registros.</span>
       </div>
       <div class="col-sm-6 d-flex align-items-start justify-content-end">
-        <b-btn class="i-new-btn" variant="danger" disabled>Eliminar</b-btn>
+        <b-btn class="i-new-btn" variant="danger" disabled v-if="showDeleteButton">Eliminar</b-btn>
       </div>
     </div>
   </div>
@@ -42,6 +42,12 @@ export default {
         return [];
       },
     },
+    showDeleteButton: {
+      type: Boolean,
+      default(){
+        return true;
+      }
+    }
   },
 };
 </script>

@@ -3,7 +3,7 @@
       <IHomeHeader />
       <IContainer>
         <ISearchContainer
-          placeholder="Buscar por Id o nombre"
+          placeholder="Buscar por Id o cliente"
           toNew="/order/new"
         />
         <IDatagrid :fields="fields" />

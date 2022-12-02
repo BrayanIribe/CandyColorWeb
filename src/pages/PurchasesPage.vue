@@ -3,10 +3,10 @@
       <IHomeHeader />
       <IContainer>
         <ISearchContainer
-          placeholder="Buscar por Id o nombre"
+          placeholder="Buscar por Id o proveedor"
           toNew="/purchase/new"
         />
-        <IDatagrid :fields="fields" />
+        <IDatagrid :fields="fields" :showDeleteButton="false"/>
       </IContainer>
     </div>
   </template>
