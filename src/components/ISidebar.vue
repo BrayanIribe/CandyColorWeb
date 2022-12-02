@@ -2,6 +2,7 @@
   <div
     class="i-sidebar border-right shadow"
     :class="{ 'i-show': $show }"
+    @mouseleave="hideSidebar"
     @click="hideSidebar"
   >
     <div class="i-sb-close">
@@ -81,5 +82,6 @@ export default {
   top: 10px;
   font-size: 1.5rem;
   color: rgba(0, 0, 0, 0.3);
+  cursor: pointer !important;
 }
 </style>

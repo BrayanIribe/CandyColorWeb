@@ -17,10 +17,19 @@
       <div class="col-sm-6">
         <slot></slot>
         <b-pagination />
-        <span>Mostrando desde 0 hasta 0 registros.</span>
+        <span
+          >Mostrando desde {{ items.length }} hasta
+          {{ items.length }} registros.</span
+        >
       </div>
       <div class="col-sm-6 d-flex align-items-start justify-content-end">
-        <b-btn class="i-new-btn" variant="danger" disabled v-if="showDeleteButton">Eliminar</b-btn>
+        <b-btn
+          class="i-new-btn"
+          variant="danger"
+          disabled
+          v-if="showDeleteButton"
+          >Eliminar</b-btn
+        >
       </div>
     </div>
   </div>
@@ -44,10 +53,10 @@ export default {
     },
     showDeleteButton: {
       type: Boolean,
-      default(){
+      default() {
         return true;
-      }
-    }
+      },
+    },
   },
 };
 </script>

@@ -1,28 +1,29 @@
 <template>
   <div>
     <IHomeHeader />
-    <IContainer>
-      <div
-        class="i-m-container d-flex align-items-center justify-content-center"
-      >
-        <h1>Inicio</h1>
-      </div>
-    </IContainer>
+    <div class="i-m-container d-flex align-items-center justify-content-center">
+      <img src="/img/dashboard.png" />
+    </div>
   </div>
 </template>
 
 <script>
-import IContainer from "@/components/IContainer";
 import IHomeHeader from "@/components/IHomeHeader";
 
 export default {
-  components: { IHomeHeader, IContainer },
+  components: { IHomeHeader },
 };
 </script>
 
 <style>
 .i-m-container {
   width: 100vw;
-  height: 80vh;
+  height: 90vh;
+  background-color: #eff0f2;
+  padding: 1rem;
+}
+
+.i-m-container img {
+  max-height: 100%;
 }
 </style>

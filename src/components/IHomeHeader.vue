@@ -1,7 +1,12 @@
 <template>
   <div class="i-home-header row bg-pink text-white">
     <div class="col-3">
-      <div class="i-menu-btn" @click="showSidebar" v-if="$showSidebar">
+      <div
+        class="i-menu-btn"
+        @click="showSidebar"
+        @mouseenter="showSidebar"
+        v-if="$showSidebar"
+      >
         <font-awesome-icon icon="fa-solid fa-bars" />
       </div>
     </div>
@@ -41,6 +46,7 @@ export default {
 }
 
 .i-menu-btn {
+  cursor: pointer;
   font-size: 1.2rem;
 }
 

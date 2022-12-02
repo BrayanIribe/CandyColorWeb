@@ -6,14 +6,19 @@
         placeholder="Buscar por Id o nombre"
         toNew="/inventory/new"
       />
-      <IDatagrid :fields="fields" >
-        <b-button variant="success" class="mb-3" v-b-modal.modal-1>Modificar Existencia</b-button>
+      <IDatagrid :fields="fields" :items="items">
+        <b-button variant="success" class="mb-3" v-b-modal.modal-1
+          >Modificar Existencia</b-button
+        >
         <b-modal id="modal-1" title="Modificar Existencia">
-          <b-form-input id="range-1" v-model="value" type="number" min="0" ></b-form-input>
+          <b-form-input
+            id="range-1"
+            v-model="value"
+            type="number"
+            min="0"
+          ></b-form-input>
         </b-modal>
-        
-    </IDatagrid>
-
+      </IDatagrid>
     </IContainer>
   </div>
 </template>
@@ -36,9 +41,34 @@ export default {
         { key: "existence", label: "Existencia" },
         { key: "cost", label: "Costo" },
       ],
+      items: [
+        {
+          id: 1,
+          description: "Galletas Maria",
+          code: "112891289312",
+          isMatter: false,
+          existence: 10,
+          cost: "$5.00 MXN",
+        },
+        {
+          id: 2,
+          description: "Panditas 45 gr",
+          code: "54898978989",
+          isMatter: true,
+          existence: 22,
+          cost: "$35.00 MXN",
+        },
+        {
+          id: 3,
+          description: "Azúcar kg",
+          code: "3444",
+          isMatter: true,
+          existence: 50,
+          cost: "$32.00 MXN",
+        },
+      ],
     };
   },
-
 };
 </script>
 
