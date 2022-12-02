@@ -9,6 +9,7 @@ import AddModInventoryPage from './pages/AddModInventoryPage';
 import OrdersPage from './pages/OrdersPage';
 import SalesPage from './pages/SalesPage';
 import PurchasesPage from './pages/PurchasesPage';
+import ReportsPage from './pages/ReportsPage';
 import NotFoundPage from "./pages/NotFoundPage";
 
 const routes = [
@@ -22,7 +23,9 @@ const routes = [
     { path: '/inventory', component: InventoryPage, name: 'Inventario', showSidebar: true, },
     { path: '/order', component: OrdersPage, name: 'Pedidos', showSidebar: true, },
     { path: '/sales', component: SalesPage, name: 'Ventas', showSidebar: true, },
+    { path: '/reports', component: ReportsPage, name: 'Reportes', showSidebar: true,},
     { path: '/purchases', component: PurchasesPage, name: 'Compras', showSidebar: true, },
+
     { path: '*', component: NotFoundPage, name: '404', },
 ];
 

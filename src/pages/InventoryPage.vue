@@ -7,7 +7,11 @@
         toNew="/inventory/new"
       />
       <IDatagrid :fields="fields" >
-        <b-button variant="success" class="mb-3">Modificar Existencia</b-button>
+        <b-button variant="success" class="mb-3" v-b-modal.modal-1>Modificar Existencia</b-button>
+        <b-modal id="modal-1" title="Modificar Existencia">
+          <b-form-input id="range-1" v-model="value" type="number" min="0" ></b-form-input>
+        </b-modal>
+        
     </IDatagrid>
 
     </IContainer>
@@ -34,6 +38,7 @@ export default {
       ],
     };
   },
+
 };
 </script>
 
