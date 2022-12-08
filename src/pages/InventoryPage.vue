@@ -72,13 +72,13 @@ export default {
       if (row) this.form.existencia = row.existencia;
     },
     async fetch() {
-      const response = await this.$api.products.fetch();
+      const response = await this.$api.productos.fetch();
       if (response.status === 200) {
         this.items = response.data;
       }
     },
     async onDelete(row) {
-      const response = await this.$api.products.delete(row.id);
+      const response = await this.$api.productos.delete(row.id);
       if (response.status === 200) {
         this.$ok("Se ha eliminado el producto con éxito.");
         this.fetch();
@@ -88,7 +88,7 @@ export default {
     },
     async onSubmitExistencia() {
       const form = { ...this.selectedRow, existencia: this.form.existencia };
-      const response = await this.$api.products.update(form.id, form);
+      const response = await this.$api.productos.update(form.id, form);
       if (response.status === 200) {
         this.$ok("Se ha modificado la existencia del producto correctamente.");
         this.fetch();

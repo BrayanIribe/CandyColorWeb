@@ -1,7 +1,7 @@
 import auth from './auth';
-import products from './products';
+import productos from './productos';
 
 export default {
     auth,
-    products
+    productos
 }
