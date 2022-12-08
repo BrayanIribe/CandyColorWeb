@@ -28,9 +28,9 @@ export default {
     return {
       fields: [
         { key: "id", label: "Id" },
-        { key: "name", label: "Nombre" },
+        { key: "nombre", label: "Nombre" },
         { key: "rfc", label: "RFC" },
-        { key: "phone", label: "Teléfono" },
+        { key: "telefono", label: "Teléfono" },
       ],
       items: [],
     };
@@ -39,27 +39,7 @@ export default {
     async fetch() {
       const response = await this.$api.clientes.fetch();
       if (response.status === 200) {
-        // this.items = response.data;
-        this.items = [
-          {
-            id: 1,
-            name: "GIBRAN",
-            rfc: "GRD850825PR9",
-            phone: "+1 (55) 938 2019",
-          },
-          {
-            id: 2,
-            name: "MARTHA",
-            rfc: "MAP801402JM7",
-            phone: "+1 (55) 408 2514",
-          },
-          {
-            id: 3,
-            name: "ELVA",
-            rfc: "ELV090402LM7",
-            phone: "+1 (55) 124 7623",
-          },
-        ];
+        this.items = response.data;
       }
     },
     async onDelete(row) {

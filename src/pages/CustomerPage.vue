@@ -4,38 +4,38 @@
     <IContainer class="mt-5">
       <h1>{{ $title }}</h1>
       <hr />
-      <form class="row mt-5">
+      <form class="row mt-5" @submit="submit">
         <b-form-group class="col-sm-5 mb-4" label="Nombre">
           <b-form-input v-model="form.nombre" required></b-form-input>
         </b-form-group>
         <b-form-group class="col-sm-5 offset-sm-2 mb-4" label="RFC">
-          <b-form-input required></b-form-input>
+          <b-form-input v-model="form.rfc" required></b-form-input>
         </b-form-group>
         <b-form-group class="col-sm-5 mb-4" label="Referencia">
-          <b-form-input required></b-form-input>
+          <b-form-input v-model="form.referencia" required></b-form-input>
         </b-form-group>
         <b-form-group class="col-sm-5 offset-sm-2 mb-4" label="Teléfono">
-          <b-form-input required></b-form-input>
+          <b-form-input v-model="form.telefono" required></b-form-input>
         </b-form-group>
         <b-form-group class="col-sm-5 mb-4" label="Calle">
-          <b-form-input required></b-form-input>
+          <b-form-input v-model="form.calle" required></b-form-input>
         </b-form-group>
         <b-form-group class="col-sm-5 offset-sm-2 mb-4" label="Número">
-          <b-form-input required></b-form-input>
+          <b-form-input v-model="form.numero" required></b-form-input>
         </b-form-group>
         <b-form-group class="col-sm-5 mb-4" label="Colonia">
-          <b-form-input required></b-form-input>
+          <b-form-input v-model="form.colonia" required></b-form-input>
         </b-form-group>
         <b-form-group class="col-sm-5 offset-sm-2 mb-4" label="Código postal">
-          <b-form-input required></b-form-input>
+          <b-form-input v-model="form.codigoPostal" required></b-form-input>
         </b-form-group>
         <div class="col-sm-12 mb-3 mt-5">
           <b-btn
             class="i-save-btn"
-            type="button"
-            @click="$router.back()"
+            type="submit"
             block
             variant="primary"
+            :disabled="$loading"
             >Guardar</b-btn
           >
         </div>
@@ -56,6 +56,7 @@ export default {
         id: 0,
         nombre: "",
         rfc: "",
+        referencia: "",
         telefono: "",
         calle: "",
         numero: "",
@@ -66,10 +67,43 @@ export default {
   },
   computed: {
     $title() {
-      const { id } = this.$route.params;
-      if (id === "new") return "Agregar cliente";
+      if (this.form.id === 0) return "Agregar cliente";
       return "Editar cliente";
     },
+  },
+  methods: {
+    async submit(e) {
+      // Si el servidor esta ocupado, abortar la peticion
+      if (this.$loading) return;
+      // Si se desencadeno la llamada por un formulario submit HTML5, abortar el envio nativo
+      if (e) e.preventDefault();
+
+      const response =
+        this.form.id === 0
+          ? await this.$api.clientes.create(this.form)
+          : await this.$api.clientes.update(this.form.id, this.form);
+      if (response.status === 200 || response.status === 201) {
+        await this.$ok("Se ha guardado el cliente con éxito.");
+        this.$router.back();
+      } else {
+        await this.$error(
+          "Ha ocurrido un problema al intentar guardado el cliente."
+        );
+      }
+    },
+  },
+  async created(){
+    const { id } = this.$route.params;
+    this.form.id = id === "new" ? 0 : parseInt(id, 10);
+
+    if(this.form.id > 0){
+      const response = await this.$api.clientes.fetchById(this.form.id);
+      if (response.status === 200) {
+        this.form = response.data;
+      } else {
+        this.form.id = 0;
+      }
+    }
   },
 };
 </script>
