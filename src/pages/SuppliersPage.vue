@@ -6,7 +6,11 @@
         placeholder="Buscar por Id o nombre"
         toNew="/supplier/new"
       />
-      <IDatagrid :fields="fields" :items="items" />
+      <IDatagrid 
+        :fields="fields" 
+        :items="items" 
+        @onDelete="onDelete"
+        @onEdit="(row) => $router.push('/supplier/' + row.id)"/>
     </IContainer>
   </div>
 </template>
@@ -23,31 +27,32 @@ export default {
     return {
       fields: [
         { key: "id", label: "Id" },
-        { key: "name", label: "Nombre" },
+        { key: "nombre", label: "Nombre" },
         { key: "rfc", label: "RFC" },
-        { key: "phone", label: "Teléfono" },
+        { key: "telefono", label: "Teléfono" },
       ],
-      items: [
-        {
-          id: 1,
-          name: "Rodri",
-          rfc: " ",
-          phone: "+1 (55) 938 2019",
-        },
-        {
-          id: 2,
-          name: "Pascu",
-          rfc: " ",
-          phone: "+1 (55) 408 2514",
-        },
-        {
-          id: 3,
-          name: "Sofi",
-          rfc: " ",
-          phone: "+1 (55) 124 7623",
-        },
-      ],
+      items: [],
     };
+  },
+  methods: {
+    async fetch() {
+      const response = await this.$api.proveedores.fetch();
+      if (response.status === 200) {
+        this.items = response.data;
+      }
+    },
+    async onDelete(row) {
+      const response = await this.$api.proveedores.delete(row.id);
+      if (response.status === 200) {
+        this.$ok("Se ha eliminado el proveeores con éxito.");
+        this.fetch();
+      } else {
+        this.$error("Ocurrió un problema al intentar eliminar el proveedores.");
+      }
+    },
+  },
+  created(){
+    this.fetch();
   },
 };
 </script>
