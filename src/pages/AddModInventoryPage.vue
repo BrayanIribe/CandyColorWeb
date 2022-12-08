@@ -96,12 +96,15 @@ export default {
   },
   methods: {
     async submit(e) {
+      // Si el servidor esta ocupado, abortar la peticion
+      if (this.$loading) return;
+      // Si se desencadeno la llamada por un formulario submit HTML5, abortar el envio nativo
       if (e) e.preventDefault();
 
       const response =
         this.form.id === 0
-          ? await this.$api.productos.create(this.form)
-          : await this.$api.productos.update(this.form.id, this.form);
+          ? await this.$api.products.create(this.form)
+          : await this.$api.products.update(this.form.id, this.form);
       if (response.status === 200 || response.status === 201) {
         await this.$ok("Se ha guardado el producto con éxito.");
         this.$router.back();
@@ -117,7 +120,7 @@ export default {
     this.form.id = id === "new" ? 0 : parseInt(id, 10);
 
     if (this.form.id > 0) {
-      const response = await this.$api.productos.fetchById(this.form.id);
+      const response = await this.$api.products.fetchById(this.form.id);
       if (response.status === 200) {
         this.form = response.data;
       } else {
