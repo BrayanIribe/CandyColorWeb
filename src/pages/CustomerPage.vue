@@ -6,7 +6,7 @@
       <hr />
       <form class="row mt-5">
         <b-form-group class="col-sm-5 mb-4" label="Nombre">
-          <b-form-input required></b-form-input>
+          <b-form-input v-model="form.nombre" required></b-form-input>
         </b-form-group>
         <b-form-group class="col-sm-5 offset-sm-2 mb-4" label="RFC">
           <b-form-input required></b-form-input>
@@ -51,7 +51,18 @@ import IHomeHeader from "@/components/IHomeHeader";
 export default {
   components: { IHomeHeader, IContainer },
   data() {
-    return {};
+    return {
+      form: {
+        id: 0,
+        nombre: "",
+        rfc: "",
+        telefono: "",
+        calle: "",
+        numero: "",
+        colonia: "",
+        codigoPostal: "",
+      },
+    };
   },
   computed: {
     $title() {
@@ -64,5 +75,4 @@ export default {
 </script>
 
 <style>
-
 </style>
