@@ -38,6 +38,37 @@ library.add(faClose)
 /* add font awesome icon component */
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
+import api from './services/api';
+Vue.mixin({
+  computed: {
+    $api() {
+      return api;
+    },
+    $loading() {
+      return store.state.isLoading === true;
+    },
+    $usuario() {
+      return store.state.user;
+    }
+  },
+  methods: {
+    $error(text) {
+      this.$swal({ icon: 'error', text });
+    },
+    $ok(text) {
+      this.$swal({ icon: 'success', text });
+    }
+  }
+});
+
+import VueSweetalert2 from 'vue-sweetalert2';
+
+// If you don't need the styles, do not connect
+import 'sweetalert2/dist/sweetalert2.min.css';
+
+Vue.use(VueSweetalert2);
+
+
 
 const router = new VueRouter({
   mode: 'history',

@@ -1,6 +1,16 @@
 <template>
   <div class="i-datagrid">
-    <b-table class="m-0" bordered hover :items="items" :fields="fields" />
+    <b-table
+      class="m-0"
+      bordered
+      hover
+      :items="items"
+      :fields="fields"
+      select-mode="single"
+      selectable
+      @row-selected="onRowSelected"
+      ref="dtTable"
+    />
     <div
       class="
         i-no-data-container
@@ -16,8 +26,8 @@
     <div class="row mt-3">
       <div class="col-sm-6">
         <slot></slot>
-        <b-pagination />
-        <span
+        <b-pagination v-if="false" />
+        <span v-if="false"
           >Mostrando desde {{ items.length }} hasta
           {{ items.length }} registros.</span
         >
@@ -25,8 +35,19 @@
       <div class="col-sm-6 d-flex align-items-start justify-content-end">
         <b-btn
           class="i-new-btn"
+          type="button"
+          variant="info"
+          :disabled="selectedRow === null"
+          @click="$emit('onEdit', selectedRow)"
+          v-if="showDeleteButton"
+          >Editar</b-btn
+        >&nbsp;
+        <b-btn
+          class="i-new-btn"
+          type="button"
           variant="danger"
-          disabled
+          :disabled="selectedRow === null"
+          @click="attemptDelete"
           v-if="showDeleteButton"
           >Eliminar</b-btn
         >
@@ -56,6 +77,40 @@ export default {
       default() {
         return true;
       },
+    },
+    showEditButton: {
+      type: Boolean,
+      default() {
+        return true;
+      },
+    },
+  },
+  data() {
+    return {
+      selectedRow: null,
+    };
+  },
+  methods: {
+    onRowSelected(rows) {
+      this.selectedRow = rows[0];
+      this.$emit("onSelectedRow", this.selectedRow);
+    },
+    async attemptDelete() {
+      const row = this.selectedRow;
+      if (row === null) return;
+
+      const result = await this.$swal({
+        title: "¿Desea eliminar el registro seleccionado?",
+        text: `Esta acción será irrevocable.`,
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Sí",
+        cancelButtonText: "No",
+        reverseButtons: true,
+      });
+      if (!result || !result.value) return;
+
+      this.$emit("onDelete", row);
     },
   },
 };

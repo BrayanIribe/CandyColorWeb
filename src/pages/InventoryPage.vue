@@ -6,16 +6,34 @@
         placeholder="Buscar por Id o nombre"
         toNew="/inventory/new"
       />
-      <IDatagrid :fields="fields" :items="items">
-        <b-button variant="success" class="mb-3" v-b-modal.modal-1
+      <IDatagrid
+        :fields="fields"
+        :items="items"
+        @onSelectedRow="onRowSelected"
+        @onDelete="onDelete"
+        @onEdit="(row) => $router.push('/inventory/' + row.id)"
+      >
+        <b-button
+          variant="success"
+          class="mb-3"
+          v-b-modal.modal-1
+          :disabled="selectedRow === null"
           >Modificar Existencia</b-button
         >
-        <b-modal id="modal-1" title="Modificar Existencia">
+        <b-modal
+          id="modal-1"
+          title="Modificar Existencia"
+          @ok="onSubmitExistencia"
+          ok-title="Guardar"
+          cancel-title="Cancelar"
+        >
           <b-form-input
-            id="range-1"
-            v-model="value"
             type="number"
             min="0"
+            required
+            v-model="form.existencia"
+            :disabled="selectedRow === null"
+            autofocus
           ></b-form-input>
         </b-modal>
       </IDatagrid>
@@ -35,39 +53,54 @@ export default {
     return {
       fields: [
         { key: "id", label: "Id" },
-        { key: "description", label: "Descripción" },
-        { key: "code", label: "Código de barras" },
-        { key: "isMatter", label: "Es Materia" },
-        { key: "existence", label: "Existencia" },
-        { key: "cost", label: "Costo" },
+        { key: "descripcion", label: "Descripción" },
+        { key: "codigo", label: "Código de barras" },
+        { key: "esMateria", label: "Es Materia" },
+        { key: "existencia", label: "Existencia" },
+        { key: "costo", label: "Costo" },
       ],
-      items: [
-        {
-          id: 1,
-          description: "Galletas Maria",
-          code: "112891289312",
-          isMatter: false,
-          existence: 10,
-          cost: "$5.00 MXN",
-        },
-        {
-          id: 2,
-          description: "Panditas 45 gr",
-          code: "54898978989",
-          isMatter: true,
-          existence: 22,
-          cost: "$35.00 MXN",
-        },
-        {
-          id: 3,
-          description: "Azúcar kg",
-          code: "3444",
-          isMatter: true,
-          existence: 50,
-          cost: "$32.00 MXN",
-        },
-      ],
+      items: [],
+      form: {
+        existencia: 0,
+      },
+      selectedRow: null,
     };
+  },
+  methods: {
+    onRowSelected(row) {
+      this.selectedRow = row;
+      if (row) this.form.existencia = row.existencia;
+    },
+    async fetch() {
+      const response = await this.$api.products.fetch();
+      if (response.status === 200) {
+        this.items = response.data;
+      }
+    },
+    async onDelete(row) {
+      const response = await this.$api.products.delete(row.id);
+      if (response.status === 200) {
+        this.$ok("Se ha eliminado el producto con éxito.");
+        this.fetch();
+      } else {
+        this.$error("Ocurrió un problema al intentar eliminar el producto.");
+      }
+    },
+    async onSubmitExistencia() {
+      const form = { ...this.selectedRow, existencia: this.form.existencia };
+      const response = await this.$api.products.update(form.id, form);
+      if (response.status === 200) {
+        this.$ok("Se ha modificado la existencia del producto correctamente.");
+        this.fetch();
+      } else {
+        this.$error(
+          "Ha ocurrido un problema al intentar modificar la existencia."
+        );
+      }
+    },
+  },
+  created() {
+    this.fetch();
   },
 };
 </script>

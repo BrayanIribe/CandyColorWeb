@@ -2,15 +2,28 @@
   <div>
     <IHomeHeader />
     <IContainer>
-      <form class="row">
+      <form class="row" @submit="login">
         <b-form-group label="Usuario o email" class="col-12 mb-3">
-          <b-form-input required></b-form-input>
+          <b-form-input
+            v-model="form.usuario"
+            :disabled="$loading"
+            required
+          ></b-form-input>
         </b-form-group>
         <b-form-group label="Contraseña" class="col-12 mb-5">
-          <b-form-input type="password" required></b-form-input>
+          <b-form-input
+            v-model="form.password"
+            type="password"
+            :disabled="$loading"
+            required
+          ></b-form-input>
         </b-form-group>
         <div class="col-12 mb-3">
-          <b-button variant="dark" class="i-login-btn" to="/"
+          <b-button
+            variant="dark"
+            class="i-login-btn"
+            type="submit"
+            :disabled="$loading"
             >Iniciar sesión</b-button
           >
         </div>
@@ -25,6 +38,46 @@ import IHomeHeader from "@/components/IHomeHeader";
 
 export default {
   components: { IContainer, IHomeHeader },
+  data() {
+    return {
+      form: {
+        usuario: "",
+        password: "",
+      },
+    };
+  },
+  methods: {
+    async login(e) {
+      if (this.$loading) return;
+
+      const { usuario, password } = this.form;
+
+      if (e) e.preventDefault();
+
+      const response = await this.$api.auth.login(usuario, password);
+
+      if (response.status !== 201) {
+        const text =
+          response.status === 403
+            ? "Credenciales inválidas."
+            : response.data.message;
+        this.$error(text);
+        return;
+      }
+
+      const { token } = response.data;
+      if (typeof token !== "string" || token.length <= 0) return;
+
+      localStorage.setItem("token", token);
+      await new Promise((solve) => setTimeout(solve, 100));
+
+      const checkinResponse = await this.$api.auth.checkin();
+      if (checkinResponse.status === 200) {
+        this.$store.commit("setUser", checkinResponse.data);
+        this.$router.replace("/");
+      }
+    },
+  },
 };
 </script>
 

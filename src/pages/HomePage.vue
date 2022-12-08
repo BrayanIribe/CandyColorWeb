@@ -1,6 +1,7 @@
 <template>
   <div>
     <IHomeHeader />
+    <h1>Bienvenido, {{ $usuario.nombre }}</h1>
     <div class="i-m-container d-flex align-items-center justify-content-center">
       <img src="/img/dashboard.png" />
     </div>

@@ -6,6 +6,8 @@ Vue.use(Vuex)
 const store = new Vuex.Store({
     state: {
         showSidebar: false,
+        isLoading: false,
+        user: null,
     },
     mutations: {
         showSidebar(state) {
@@ -13,6 +15,12 @@ const store = new Vuex.Store({
         },
         hideSidebar(state) {
             state.showSidebar = false;
+        },
+        setLoading(state, value) {
+            state.isLoading = value === true;
+        },
+        setUser(state, value) {
+            state.user = value;
         }
     }
 });

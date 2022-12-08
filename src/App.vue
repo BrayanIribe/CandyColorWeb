@@ -1,8 +1,7 @@
 <template>
   <div id="app">
     <ISidebar />
-    <router-view :key="$route.fullPath">
-    </router-view>
+    <router-view :key="$route.fullPath"> </router-view>
   </div>
 </template>
 
@@ -12,6 +11,16 @@ import ISidebar from "./components/ISidebar";
 export default {
   name: "App",
   components: { ISidebar },
+  async created() {
+    const checkinResponse = await this.$api.auth.checkin();
+    if (checkinResponse.status === 200) {
+      this.$store.commit("setUser", checkinResponse.data);
+      console.log("[+] Done checkin.", checkinResponse.data);
+    } else {
+      localStorage.removeItem("token");
+      this.$router.replace("/login");
+    }
+  },
 };
 </script>
 

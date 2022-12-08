@@ -28,7 +28,7 @@ const routes = [
     { path: '/suppliers', component: SuppliersPage, name: 'Proveedores', showSidebar: true, },
     { path: '/supplier/:id', component: SupplierPage, name: 'CU Proveedor', },
     { path: '/reports', component: ReportsPage, name: 'Reportes', showSidebar: true, },
-    { path: '/login', component: LoginPage, name: 'Login', hideMenu: true, showSidebar: true },
+    { path: '/login', component: LoginPage, name: 'Login', hideMenu: true },
     { path: '*', component: NotFoundPage, name: '404', },
 ];
 
