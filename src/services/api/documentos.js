@@ -7,8 +7,8 @@ export default {
     async create(form) {
         return http.GetSingleton().post('/documentos', form)
     },
-    async fetch() {
-        return http.GetSingleton().get('/documentos');
+    async fetch(tipoDocumento) {
+        return http.GetSingleton().get('/documentos/tipo-documento/' + tipoDocumento);
     },
     async delete(id) {
         return http.GetSingleton().delete('/documentos/' + id)

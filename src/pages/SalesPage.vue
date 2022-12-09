@@ -22,17 +22,19 @@ import IHomeHeader from "@/components/IHomeHeader";
 import ISearchContainer from "@/components/ISearchContainer";
 import IDatagrid from "@/components/IDatagrid.vue";
 
+const ID_TIPO_DOCUMENTO = 0;
+
 export default {
   components: { IHomeHeader, IContainer, ISearchContainer, IDatagrid },
   data() {
     return {
       fields: [
-        { key: "id", label: "Id" },
         { key: "documento", label: "Documento" },
         {
           key: "cliente.text",
           label: "Cliente",
         },
+        { key: "observaciones", label: "Observaciones" },
         { key: "total", label: "Total" },
       ],
       items: [],
@@ -40,7 +42,7 @@ export default {
   },
   methods: {
     async fetch() {
-      const response = await this.$api.documentos.fetch();
+      const response = await this.$api.documentos.fetch(ID_TIPO_DOCUMENTO);
       if (response.status === 200) {
         this.items = response.data;
       }

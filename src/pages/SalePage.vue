@@ -3,6 +3,7 @@
     <IHomeHeader />
     <IContainer>
       <div>
+        <h1>Nueva venta</h1>
         <b-modal
           id="customers-modal"
           title="Seleccionar cliente"
