@@ -10,4 +10,7 @@ export default {
     async fetch() {
         return http.GetSingleton().get('/documentos');
     },
+    async delete(id) {
+        return http.GetSingleton().delete('/documentos/' + id)
+    },
 };

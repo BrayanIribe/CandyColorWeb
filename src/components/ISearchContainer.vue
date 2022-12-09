@@ -8,7 +8,7 @@
         <b-btn variant="warning" class="i-search-btn" v-if="false"
           >Buscar</b-btn
         >
-        <h1>{{ $route.name }}</h1>
+        <h1 v-if="!isModal">{{ $route.name }}</h1>
       </div>
       <div
         class="col-sm-4 d-flex align-items-end justify-content-end offset-sm-2"
@@ -30,6 +30,10 @@ export default {
     toNew: {
       type: String,
       default: null,
+    },
+    isModal: {
+      type: Boolean,
+      default: false,
     },
   },
 };

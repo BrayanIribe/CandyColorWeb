@@ -6,7 +6,12 @@
         placeholder="Buscar por Id o nombre"
         toNew="/sale/new"
       />
-      <IDatagrid :fields="fields" :items="items" />
+      <IDatagrid
+        :fields="fields"
+        :items="items"
+        :showEditButton="false"
+        @onDelete="onDelete"
+      />
     </IContainer>
   </div>
 </template>
@@ -23,8 +28,11 @@ export default {
     return {
       fields: [
         { key: "id", label: "Id" },
-        { key: "customer", label: "Cliente" },
-        { key: "status", label: "Estatus" },
+        { key: "documento", label: "Documento" },
+        {
+          key: "cliente.text",
+          label: "Cliente",
+        },
         { key: "total", label: "Total" },
       ],
       items: [],
@@ -35,6 +43,15 @@ export default {
       const response = await this.$api.documentos.fetch();
       if (response.status === 200) {
         this.items = response.data;
+      }
+    },
+    async onDelete(row) {
+      const response = await this.$api.documentos.delete(row.id);
+      if (response.status === 200) {
+        this.$ok("Se ha eliminado el documento con éxito.");
+        this.fetch();
+      } else {
+        this.$error("Ocurrió un problema al intentar eliminar el documento.");
       }
     },
   },

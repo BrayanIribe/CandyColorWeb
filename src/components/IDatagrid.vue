@@ -10,7 +10,9 @@
       selectable
       @row-selected="onRowSelected"
       ref="dtTable"
-    />
+    >
+      <slot></slot
+    ></b-table>
     <div
       class="
         i-no-data-container
@@ -39,7 +41,7 @@
           variant="warning"
           :disabled="selectedRow === null"
           @click="$emit('onEdit', selectedRow)"
-          v-if="showDeleteButton"
+          v-if="showDeleteButton && showEditButton"
           >Editar</b-btn
         >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <b-btn

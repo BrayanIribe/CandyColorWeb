@@ -5,6 +5,7 @@
       <ISearchContainer
         placeholder="Buscar por Id o nombre"
         toNew="/customer/new"
+        v-if="!isModal"
       />
       <IDatagrid
         :fields="fields"
