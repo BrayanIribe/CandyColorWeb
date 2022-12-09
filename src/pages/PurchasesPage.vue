@@ -23,31 +23,24 @@ export default {
     return {
       fields: [
         { key: "id", label: "Id" },
-        { key: "supplier", label: "Proveedor" },
+        { key: "proveedor", label: "Proveedor" },
         { key: "status", label: "Estatus" },
         { key: "total", label: "Total" },
       ],
       items: [
-        {
-          id: 1,
-          supplier: "Sonrics",
-          status: "Completado",
-          total: "$30.00 MXN",
-        },
-        {
-          id: 2,
-          supplier: "Marinela",
-          status: "Cancelado",
-          total: "$50.00 MXN",
-        },
-        {
-          id: 3,
-          supplier: "Gamesa",
-          status: "Pendiente",
-          total: "$300.00 MXN",
-        },
       ],
     };
+  },
+  methods: {
+    async fetch() {
+      const response = await this.$api.documentos.fetch();
+      if (response.status === 200) {
+        this.items = response.data;
+      }
+    },
+  },
+  created() {
+    this.fetch();
   },
 };
 </script>

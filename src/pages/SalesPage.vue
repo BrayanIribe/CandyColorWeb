@@ -30,6 +30,17 @@ export default {
       items: [],
     };
   },
+  methods: {
+    async fetch() {
+      const response = await this.$api.documentos.fetch();
+      if (response.status === 200) {
+        this.items = response.data;
+      }
+    },
+  },
+  created() {
+    this.fetch();
+  },
 };
 </script>
   
