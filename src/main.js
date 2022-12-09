@@ -60,10 +60,10 @@ Vue.mixin({
   },
   methods: {
     $error(text) {
-      this.$swal({ icon: 'error', text });
+      return this.$swal({ icon: 'error', text });
     },
     $ok(text) {
-      this.$swal({ icon: 'success', text });
+      return this.$swal({ icon: 'success', text });
     },
     $currency(value) {
       return formatter.format(value);

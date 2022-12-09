@@ -147,22 +147,6 @@ export default {
         { key: "precio", label: "Precio" },
         { key: "subtotal", label: "Subtotal" },
       ],
-      /* 
-      form: {
-        id: 0,
-        idCliente: 0,
-        idUsuario: 0,
-        idProveedor: 0,
-        tipoDocumento: 0,
-        status: "",
-        subtotal: "",
-        impuestos: "",
-        total: "",
-        observaciones: "",
-        serie: "",
-        folio: "",
-      },
-      */
       observaciones: "",
       conceptos: [],
       selectedConcepto: null,
