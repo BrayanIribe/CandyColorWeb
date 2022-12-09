@@ -64,6 +64,7 @@ export default {
   padding-top: 5rem;
   transition: transform 0.2s;
   transform: translateX(-200px);
+  z-index: 999999;
 }
 
 .i-sidebar.i-show {
