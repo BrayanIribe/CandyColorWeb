@@ -23,31 +23,24 @@ export default {
     return {
       fields: [
         { key: "id", label: "Id" },
-        { key: "customer", label: "Cliente" },
-        { key: "status", label: "Estatus" },
+        { key: "cliente", label: "Cliente" },
+        { key: "status", label: "Estado" },
         { key: "total", label: "Total" },
       ],
       items: [
-        {
-          id: 1,
-          customer: "Andres Urias",
-          status: "PENDIENTE DE PAGO",
-          total: "$50.00 MXN",
-        },
-        {
-          id: 2,
-          customer: "Miguel Sanez",
-          status: "CANCELADO SIN ANTICIPACION",
-          total: "$60.00 MXN",
-        },
-        {
-          id: 3,
-          customer: "Rafael Gutierrez",
-          status: "Entregado",
-          total: "$300.00 MXN",
-        },
       ],
     };
+  },
+  methods: {
+    async fetch() {
+      const response = await this.$api.documentos.fetch();
+      if (response.status === 200) {
+        this.items = response.data;
+      }
+    },
+  },
+  created() {
+    this.fetch();
   },
 };
 </script>

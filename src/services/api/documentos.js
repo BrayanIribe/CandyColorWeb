@@ -7,4 +7,7 @@ export default {
     async create(form) {
         return http.GetSingleton().post('/documentos', form)
     },
+    async fetch() {
+        return http.GetSingleton().get('/documentos');
+    },
 };
