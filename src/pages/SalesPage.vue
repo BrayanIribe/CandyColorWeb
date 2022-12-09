@@ -27,26 +27,7 @@ export default {
         { key: "status", label: "Estatus" },
         { key: "total", label: "Total" },
       ],
-      items: [
-        {
-          id: 1,
-          customer: "Brayan Iribe",
-          status: "Completado",
-          total: "$30.00 MXN",
-        },
-        {
-          id: 2,
-          customer: "Miguel Sanez",
-          status: "Cancelado",
-          total: "$50.00 MXN",
-        },
-        {
-          id: 3,
-          customer: "Andres Urias",
-          status: "Pendiente",
-          total: "$300.00 MXN",
-        },
-      ],
+      items: [],
     };
   },
 };

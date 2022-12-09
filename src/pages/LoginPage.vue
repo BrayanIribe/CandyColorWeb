@@ -3,14 +3,17 @@
     <IHomeHeader />
     <IContainer>
       <form class="row" @submit="login">
-        <b-form-group label="Usuario o email" class="col-12 mb-3">
+        <div class="col-3 mb-3"></div>
+        <b-form-group label="Usuario o email" class="col-6 mb-3">
           <b-form-input
             v-model="form.usuario"
             :disabled="$loading"
             required
           ></b-form-input>
         </b-form-group>
-        <b-form-group label="Contraseña" class="col-12 mb-5">
+        <div class="col-3 mb-3"></div>
+        <div class="col-3 mb-3"></div>
+        <b-form-group label="Contraseña" class="col-6 mb-5">
           <b-form-input
             v-model="form.password"
             type="password"
@@ -18,7 +21,9 @@
             required
           ></b-form-input>
         </b-form-group>
-        <div class="col-12 mb-3">
+        <div class="col-3 mb-3"></div>
+        <div class="col-4 mb-3"></div>
+        <div class="col-4 mb-3">
           <b-button
             variant="dark"
             class="i-login-btn"
@@ -27,6 +32,7 @@
             >Iniciar sesión</b-button
           >
         </div>
+        <div class="col-4 mb-3"></div>
       </form>
     </IContainer>
   </div>
