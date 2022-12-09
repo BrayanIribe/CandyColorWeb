@@ -55,9 +55,10 @@ export default {
         { key: "id", label: "Id" },
         { key: "descripcion", label: "Descripción" },
         { key: "codigo", label: "Código de barras" },
-        { key: "esMateria", label: "Es Materia" },
+        // { key: "esMateria", label: "Es Materia" },
         { key: "existencia", label: "Existencia" },
         { key: "costo", label: "Costo" },
+        { key: "precio", label: "Precio" },
       ],
       items: [],
       form: {

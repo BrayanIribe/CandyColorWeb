@@ -1,16 +1,21 @@
 <template>
   <div>
-    <IHomeHeader />
+    <IHomeHeader v-if="!isModal" />
     <IContainer>
       <ISearchContainer
         placeholder="Buscar por Id o nombre"
         toNew="/supplier/new"
+        v-if="!isModal"
       />
-      <IDatagrid 
-        :fields="fields" 
-        :items="items" 
+      <IDatagrid
+        :fields="fields"
+        :items="items"
+        :showDeleteButton="!isModal"
+        :showEditButton="!isModal"
+        @onSelectedRow="(row) => $emit('onSelectedRow', row)"
         @onDelete="onDelete"
-        @onEdit="(row) => $router.push('/supplier/' + row.id)"/>
+        @onEdit="(row) => $router.push('/supplier/' + row.id)"
+      />
     </IContainer>
   </div>
 </template>
@@ -23,6 +28,12 @@ import IDatagrid from "@/components/IDatagrid.vue";
 
 export default {
   components: { IHomeHeader, IContainer, ISearchContainer, IDatagrid },
+  props: {
+    isModal: {
+      type: Boolean,
+      default: false,
+    },
+  },
   data() {
     return {
       fields: [
@@ -51,7 +62,7 @@ export default {
       }
     },
   },
-  created(){
+  created() {
     this.fetch();
   },
 };

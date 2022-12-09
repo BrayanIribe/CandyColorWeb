@@ -126,7 +126,7 @@ import IContainer from "@/components/IContainer";
 import IHomeHeader from "@/components/IHomeHeader";
 import CustomersPage from "./CustomersPage.vue";
 
-const ID_TIPO_DOCUMENTO = 1;
+const ID_TIPO_DOCUMENTO = 2;
 
 export default {
   components: { IHomeHeader, IContainer, CustomersPage },
