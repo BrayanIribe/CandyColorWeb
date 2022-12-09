@@ -36,12 +36,12 @@
         <b-btn
           class="i-new-btn"
           type="button"
-          variant="info"
+          variant="warning"
           :disabled="selectedRow === null"
           @click="$emit('onEdit', selectedRow)"
           v-if="showDeleteButton"
           >Editar</b-btn
-        >&nbsp;
+        >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <b-btn
           class="i-new-btn"
           type="button"

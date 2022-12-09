@@ -1,11 +1,14 @@
 <template>
   <div class="i-search-container">
-    <div class="row">
+    <div class="row mt-5">
       <div class="col-sm-6 mb-3 d-flex">
-        <b-form-group label="Búsqueda" style="width: 90%">
+        <b-form-group label="Búsqueda" style="width: 90%" v-if="false">
           <b-form-input :placeholder="placeholder" required></b-form-input>
         </b-form-group>
-        <b-btn variant="warning" class="i-search-btn">Buscar</b-btn>
+        <b-btn variant="warning" class="i-search-btn" v-if="false"
+          >Buscar</b-btn
+        >
+        <h1>{{ $route.name }}</h1>
       </div>
       <div
         class="col-sm-4 d-flex align-items-end justify-content-end offset-sm-2"
