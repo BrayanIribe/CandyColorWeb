@@ -39,6 +39,13 @@ library.add(faClose)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 import api from './services/api';
+
+const formatter = new Intl.NumberFormat('en-US', {
+  style: 'currency',
+  currency: 'USD',
+});
+
+
 Vue.mixin({
   computed: {
     $api() {
@@ -57,6 +64,9 @@ Vue.mixin({
     },
     $ok(text) {
       this.$swal({ icon: 'success', text });
+    },
+    $currency(value) {
+      return formatter.format(value);
     }
   }
 });

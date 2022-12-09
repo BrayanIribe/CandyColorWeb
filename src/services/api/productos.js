@@ -7,6 +7,9 @@ export default {
     async fetchById(id) {
         return http.GetSingleton().get('/productos/' + id);
     },
+    async fetchByCodigo(codigo) {
+        return http.GetSingleton().get('/productos/codigo/' + codigo);
+    },
     async create(form) {
         return http.GetSingleton().post('/productos', form)
     },

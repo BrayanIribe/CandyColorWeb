@@ -22,7 +22,7 @@ const routes = [
     { path: '/purchases', component: PurchasesPage, name: 'Compras', showSidebar: true, },
     { path: '/purchase/:id', component: PurchasePage, name: 'CU Compra', },
     { path: '/inventory/:id', component: AddModInventoryPage, name: 'CU Inventario', },
-    { path: '/inventory', component: InventoryPage, name: 'Inventario', showSidebar: true, },
+    { path: '/inventory', component: InventoryPage, name: 'Productos', showSidebar: true, },
     { path: '/order/:id', component: OrderPage, name: 'CU Pedido', },
     { path: '/order', component: OrdersPage, name: 'Pedidos', showSidebar: true, },
     { path: '/customers', component: CustomersPage, name: 'Clientes', showSidebar: true, },
